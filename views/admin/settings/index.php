@@ -38,10 +38,8 @@
                                                     <td><?php echo _d($competition['start_date']); ?></td>
                                                     <td><?php echo _d($competition['end_date']); ?></td>
                                                     <td>
-                                                        <div class="btn-group" role="group">
                                                             <a href="#" data-id="<?php echo $competition['id']; ?>" class="btn btn-default btn-icon btn-edit-competition"><i class="fa fa-pencil"></i></a>
                                                             <a href="<?php echo admin_url('gamification/delete_competition/' . $competition['id']); ?>" class="btn btn-default btn-icon _delete"><i class="fa-regular fa-trash-can"></i></a>
-                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -56,24 +54,26 @@
                                 <div class="clearfix"></div>
                                 <hr class="hr-panel-heading" />
                                 <div class="table-responsive">
-                                     <table class="table dt-table">
+                                    <table class="table dt-table">
                                         <thead>
                                             <th>Nome da Meta</th>
-                                            <th>Tipo de Comissão</th>
-                                            <th>Valor da Comissão</th>
+                                            <th>Alvo</th>
+                                            <th>Tipo da Meta (Valor)</th>
+                                            <th>Comissão</th>
+                                            <th>Período</th>
                                             <th>Opções</th>
                                         </thead>
                                         <tbody>
                                             <?php foreach ($goals as $goal) { ?>
                                                 <tr>
                                                     <td><?php echo $goal['goal_name']; ?></td>
-                                                    <td><?php echo $goal['commission_type'] == 'percentage' ? 'Porcentagem (%)' : 'Valor Fixo (R$)'; ?></td>
-                                                    <td><?php echo number_format($goal['commission_value'], 2, ',', '.'); ?></td>
+                                                    <td><?php echo format_goal_column('target_type', $goal); ?></td>
+                                                    <td><?php echo format_goal_column('value_type', $goal); ?></td>
+                                                    <td><?php echo format_goal_column('commission', $goal); ?></td>
+                                                    <td><?php echo format_goal_column('period', $goal); ?></td>
                                                     <td>
-                                                        <div class="btn-group" role="group">
                                                             <a href="#" data-id="<?php echo $goal['id']; ?>" class="btn btn-default btn-icon btn-edit-goal"><i class="fa fa-pencil"></i></a>
                                                             <a href="<?php echo admin_url('gamification/delete_goal/' . $goal['id']); ?>" class="btn btn-default btn-icon _delete"><i class="fa-regular fa-trash-can"></i></a>
-                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

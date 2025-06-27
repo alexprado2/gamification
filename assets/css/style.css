@@ -13,3 +13,33 @@ gamification-leaderboard-item {
     font-weight: bold;
     margin-right: 15px;
 }
+
+.leaderboard-list-container li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 8px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 16px;
+}
+
+.leaderboard-list-container li:last-child {
+    border-bottom: none;
+}
+
+.leaderboard-position {
+    font-weight: bold;
+    flex-basis: 20%;
+}
+
+.leaderboard-name {
+    flex-basis: 60%;
+    text-align: left;
+}
+
+.leaderboard-score {
+    flex-basis: 20%;
+    text-align: right;
+    font-weight: bold;
+    color: #03a9f4;
+}

@@ -1,14 +1,31 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-// Exemplo de uma função helper que você poderia criar no futuro:
-/*
-if (!function_exists('get_active_competition_for_staff')) {
-    function get_active_competition_for_staff($staff_id)
+if (!function_exists('format_goal_column')) {
+
+    function format_goal_column($column_name, $goal)
     {
-        $CI = &get_instance();
-        // Lógica para encontrar a competição ativa para um membro da equipe
-        return [];
+        $value = isset($goal[$column_name]) ? $goal[$column_name] : '';
+
+        switch ($column_name) {
+            case 'target_type':
+                return $value == 'user' ? 'Individual' : 'Equipe';
+            
+            case 'value_type':
+                $goal_value = ' (' . number_format($goal['goal_value'], $goal['value_type'] == 'fixed_brl' ? 2 : 0, ',', '.') . ')';
+                return ($value == 'fixed_brl' ? 'Valor Fixo (R$)' : 'Nº de Conversões') . $goal_value;
+
+            case 'commission':
+                if ($goal['commission_type'] == 'percentage') {
+                    return number_format($goal['commission_value'], 2, ',', '.') . '%';
+                }
+                return 'R$ ' . number_format($goal['commission_value'], 2, ',', '.');
+
+            case 'period':
+                return _d($goal['start_date']) . ' a ' . _d($goal['end_date']);
+
+            default:
+                return $value;
+        }
     }
 }
-*/

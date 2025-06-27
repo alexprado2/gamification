@@ -122,4 +122,14 @@ class Gamification extends AdminController
         }
         redirect(admin_url('gamification/settings'));
     }
+
+    public function get_goal_progress_data($goal_id)
+    {
+        if (!$this->input->is_ajax_request()) {
+            show_404();
+        }
+        $staff_id = get_staff_user_id();
+        $data = $this->gamification_model->get_user_goal_progress($goal_id, $staff_id);
+        echo json_encode($data);
+    }
 }
