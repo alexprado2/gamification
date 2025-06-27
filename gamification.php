@@ -6,7 +6,6 @@ Module Name: Gamification
 Description: Módulo de Metas, Comissões e Campeonatos para a equipe de vendas.
 Version: 1.0.0
 Author: Alex
-Author URI: 
 */
 
 define('GAMIFICATION_MODULE_NAME', 'gamification');

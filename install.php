@@ -1,10 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+// Obtém a instância do CodeIgniter
+$CI = &get_instance();
 $db_prefix = db_prefix();
 
-if (!$this->db->table_exists("{$db_prefix}gamify_goals")) {
-    $this->db->query("
+if (!$CI->db->table_exists("{$db_prefix}gamify_goals")) {
+    $CI->db->query("
         CREATE TABLE `{$db_prefix}gamify_goals` (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
             `goal_name` VARCHAR(255) NOT NULL,
@@ -19,8 +21,8 @@ if (!$this->db->table_exists("{$db_prefix}gamify_goals")) {
     ");
 }
 
-if (!$this->db->table_exists("{$db_prefix}gamify_competitions")) {
-    $this->db->query("
+if (!$CI->db->table_exists("{$db_prefix}gamify_competitions")) {
+    $CI->db->query("
         CREATE TABLE `{$db_prefix}gamify_competitions` (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
             `competition_name` VARCHAR(255) NOT NULL,
@@ -32,8 +34,8 @@ if (!$this->db->table_exists("{$db_prefix}gamify_competitions")) {
     ");
 }
 
-if (!$this->db->table_exists("{$db_prefix}gamify_participants")) {
-    $this->db->query("
+if (!$CI->db->table_exists("{$db_prefix}gamify_participants")) {
+    $CI->db->query("
         CREATE TABLE `{$db_prefix}gamify_participants` (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
             `competition_id` INT NOT NULL,
@@ -43,8 +45,8 @@ if (!$this->db->table_exists("{$db_prefix}gamify_participants")) {
     ");
 }
 
-if (!$this->db->table_exists("{$db_prefix}gamify_conversions")) {
-    $this->db->query("
+if (!$CI->db->table_exists("{$db_prefix}gamify_conversions")) {
+    $CI->db->query("
         CREATE TABLE `{$db_prefix}gamify_conversions` (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
             `lead_id` INT NOT NULL,

@@ -7,15 +7,19 @@
                 <div class="panel_s">
                     <div class="panel-body">
                          <h4>Competições</h4>
-                         <a href="#" class="btn btn-primary">Nova Competição</a>
+                         <a href="#" id="new_competition_btn" class="btn btn-primary">Nova Competição</a>
                          <hr class="hr-panel-heading" />
                          <h4 class="mtop25">Metas e Comissões</h4>
-                         <a href="#" class="btn btn-primary">Nova Meta</a>
+                         <a href="#" id="new_goal_btn" class="btn btn-primary">Nova Meta</a>
                          <hr class="hr-panel-heading" />
-                         </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<?php $this->load->view('admin/settings/competitions'); ?>
+<?php $this->load->view('admin/settings/goals'); ?>
+
 <?php init_tail(); ?>
