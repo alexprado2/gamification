@@ -111,21 +111,32 @@ class Gamification_model extends App_Model
 
         $this->db->where('id', $id);
         $this->db->update(db_prefix() . 'gamify_competitions', $data);
+        $this->db->where('competition_id', $id);
+        $this->db->delete(db_prefix() . 'gamify_participants');
 
+        foreach ($participants as $staff_id) {
+            $this->db->insert(db_prefix() . 'gamify_participants', [
+                'competition_id'   => $id,
+                'participant_id'   => $staff_id,
+                'participant_type' => 'staff',
+            ]);
+        }
+        return true;
+    }
+
+    public function get_goal($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->get(db_prefix() . 'gamify_goals')->row();
+    }
+
+    public function update_goal($data, $id)
+    {
+        $this->db->where('id', $id);
+        $this->db->update(db_prefix() . 'gamify_goals', $data);
         if ($this->db->affected_rows() > 0) {
-            $this->db->where('competition_id', $id);
-            $this->db->delete(db_prefix() . 'gamify_participants');
-
-            foreach ($participants as $staff_id) {
-                $this->db->insert(db_prefix() . 'gamify_participants', [
-                    'competition_id'   => $id,
-                    'participant_id'   => $staff_id,
-                    'participant_type' => 'staff',
-                ]);
-            }
             return true;
         }
-
         return false;
     }
 }

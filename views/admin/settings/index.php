@@ -38,8 +38,10 @@
                                                     <td><?php echo _d($competition['start_date']); ?></td>
                                                     <td><?php echo _d($competition['end_date']); ?></td>
                                                     <td>
-                                                        <a href="#" data-id="<?php echo $competition['id']; ?>" class="btn btn-default btn-icon btn-edit-competition"><i class="fa fa-pencil"></i></a>
-                                                        <a href="<?php echo admin_url('gamification/delete_competition/' . $competition['id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
+                                                        <div class="btn-group" role="group">
+                                                            <a href="#" data-id="<?php echo $competition['id']; ?>" class="btn btn-default btn-icon btn-edit-competition"><i class="fa fa-pencil"></i></a>
+                                                            <a href="<?php echo admin_url('gamification/delete_competition/' . $competition['id']); ?>" class="btn btn-default btn-icon _delete"><i class="fa-regular fa-trash-can"></i></a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -68,8 +70,10 @@
                                                     <td><?php echo $goal['commission_type'] == 'percentage' ? 'Porcentagem (%)' : 'Valor Fixo (R$)'; ?></td>
                                                     <td><?php echo number_format($goal['commission_value'], 2, ',', '.'); ?></td>
                                                     <td>
-                                                        <a href="#" data-id="<?php echo $goal['id']; ?>" class="btn btn-default btn-icon btn-edit-goal"><i class="fa fa-pencil"></i></a>
-                                                        <a href="<?php echo admin_url('gamification/delete_goal/' . $goal['id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
+                                                        <div class="btn-group" role="group">
+                                                            <a href="#" data-id="<?php echo $goal['id']; ?>" class="btn btn-default btn-icon btn-edit-goal"><i class="fa fa-pencil"></i></a>
+                                                            <a href="<?php echo admin_url('gamification/delete_goal/' . $goal['id']); ?>" class="btn btn-default btn-icon _delete"><i class="fa-regular fa-trash-can"></i></a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

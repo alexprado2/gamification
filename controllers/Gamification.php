@@ -23,7 +23,6 @@ class Gamification extends AdminController
         $this->load->view('admin/settings/index', $data);
     }
 
-    // Função para Adicionar/Editar Competição
     public function competition($id = '')
     {
         if ($this->input->post()) {
@@ -31,6 +30,7 @@ class Gamification extends AdminController
             $data['start_date'] = to_sql_date($data['start_date']);
             $data['end_date'] = to_sql_date($data['end_date']);
             $data['show_to_all'] = isset($data['show_to_all']) ? 1 : 0;
+            $data['participants'] = $this->input->post('participants') ?: [];
 
             if ($id == '') {
                 $success = $this->gamification_model->add_competition($data);
@@ -59,7 +59,6 @@ class Gamification extends AdminController
         echo json_encode($data);
     }
 
-    // Função para Adicionar/Editar Meta
     public function goal($id = '')
     {
         if ($this->input->post()) {
@@ -70,13 +69,26 @@ class Gamification extends AdminController
                     set_alert('success', 'Meta adicionada com sucesso');
                 }
             } else {
-                // Lógica para editar (a ser implementada)
+                $success = $this->gamification_model->update_goal($data, $id);
+                if ($success) {
+                    set_alert('success', 'Meta atualizada com sucesso');
+                } else {
+                    set_alert('warning', 'Nenhuma alteração detectada na meta.');
+                }
             }
             redirect(admin_url('gamification/settings'));
         }
     }
 
-    // Endpoint para o gráfico do painel de leads
+    public function get_goal_data($id)
+    {
+        if (!$this->input->is_ajax_request()) {
+           show_404();
+        }
+        $data = $this->gamification_model->get_goal($id);
+        echo json_encode($data);
+    }
+
     public function get_leaderboard_data($competition_id)
     {
         $data = $this->gamification_model->get_leaderboard($competition_id);
