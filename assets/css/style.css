@@ -1,0 +1,15 @@
+gamification-leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.gamification-leaderboard-item:last-child {
+    border-bottom: none;
+}
+
+.leaderboard-position {
+    font-weight: bold;
+    margin-right: 15px;
+}
